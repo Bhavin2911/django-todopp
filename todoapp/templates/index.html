@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container m-auto">	
+		<h1 class="text-center bg-dark text-info">TODO~APP </h1>
+		 <div class="jumbotron">
+			<ul class="list-group ">
+				{% for todo_item in all_items %}
+					<li class="list-group-item list-group-item-success">{{todo_item.content}}
+			     		<form action="/deletetodo/{{todo_item.id}}" style="display: inline;" method="post">
+							{% csrf_token%}	
+							<input type="submit" name="" class="btn-danger" value="DELETE">
+						</form>
+					</li>
+				{% endfor %}
+			</ul>
+			<br><br><br><br>
+			<div class="container">
+				<form action="/addtodo/" method="post">
+					{% csrf_token%}
+					<div class="form-group">
+						<input class="form-control" type="text" name="content" placeholder="Enter Your Text">
+					</div>
+					<input type="submit" name="" class="btn btn-primary" value="ADD">	
+				</form>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>
